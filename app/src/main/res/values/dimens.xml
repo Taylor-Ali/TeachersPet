@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="image_logo_width">160dp</dimen>
+    <dimen name="image_logo_height">160dp</dimen>
+    <dimen name="image_layout_margin">16dp</dimen>
+
+    <!--Form !-->
+
+    <dimen name="form_input_layout_margin_bottom">8dp</dimen>
+    <dimen name="form_input_layout_margin_top">8dp</dimen>
+    <dimen name="form_margin_top">16dp</dimen>
+    <dimen name="form_margin_bottom">16dp</dimen>
+    <dimen name="form_margin_start">16dp</dimen>
+    <dimen name="form_margin_end">16dp</dimen>
+    <dimen name="label_account_padding">8dp</dimen>
+
+    <!--Text !-->
+
+    <dimen name="text_size_small">16sp</dimen>
+    <dimen name="text_size_medium">20sp</dimen>
+    <dimen name="text_size_large">24sp</dimen>
+
+    <!--Login !-->
+
+    <dimen name="login_layout_coral_height">280dp</dimen>
+    <dimen name="login_card_margin">16dp</dimen>
+    <dimen name="login_card_elevation">4dp</dimen>
+    <dimen name="login_card_stroke_width">1dp</dimen>
+    <dimen name="login_card_layout_padding">16dp</dimen>
+    <dimen name="login_image_button_elevation">2dp</dimen>
+    <dimen name="login_image_button_padding">16dp</dimen>
+    <dimen name="login_header_margin_top">8dp</dimen>
+    <dimen name="login_margin_bottom">8dp</dimen>
+    <dimen name="register_header_padding">16dp</dimen>
+
+
+    <!--Register !-->
+
+
+    <!--Forgot Password !-->
+
+</resources>

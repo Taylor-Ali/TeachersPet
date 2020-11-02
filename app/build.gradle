@@ -1,0 +1,153 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+apply plugin: 'androidx.navigation.safeargs'
+
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion versions.sdk.compile
+    buildToolsVersion "29.0.3"
+
+    defaultConfig {
+        applicationId "mobi.teacherspet"
+        minSdkVersion versions.sdk.min
+        targetSdkVersion versions.sdk.target
+        versionCode versions.versionCode()
+        versionName versions.versionName()
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+
+        debug {
+
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+            applicationIdSuffix ".debug"
+        }
+
+        beta {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+            applicationIdSuffix ".beta"
+
+        }
+
+        release {
+
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+        }
+    }
+    flavorDimensions "enviroment"
+    productFlavors {
+        qa {
+            dimension "enviroment"
+            applicationId 'mobi.zapzap.qa'
+        }
+        demo {
+            dimension "enviroment"
+            applicationId 'mobi.zapzap.demo'
+        }
+
+        staging {
+            dimension "enviroment"
+            applicationId 'mobi.zapzap.staging'
+        }
+
+        production {
+            dimension "enviroment"
+            applicationId 'mobi.zapzap'
+        }
+    }
+
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+    }
+
+    android.applicationVariants.all { variant ->
+        variant.outputs.all {
+            def appName = applicationId
+            outputFileName = appName + "-${variant.versionName}.apk"
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:${versions.tools.kotlin}"
+    implementation "androidx.core:core-ktx:${versions.libraries.coreKtx}"
+
+    //Support
+    implementation "androidx.appcompat:appcompat:${versions.libraries.appCompat}"
+    implementation "androidx.legacy:legacy-support-v4:${versions.libraries.legacySupport}"
+
+    //Design
+    implementation "com.google.android.material:material:${versions.libraries.material}"
+    implementation "androidx.constraintlayout:constraintlayout:${versions.libraries.constraintLayout}"
+    implementation "androidx.recyclerview:recyclerview:${versions.libraries.recyclerview}"
+    implementation "androidx.activity:activity-ktx:${versions.libraries.activity}"
+    implementation "androidx.fragment:fragment-ktx:${versions.libraries.fragment}"
+
+    //Navigation
+    implementation "androidx.navigation:navigation-fragment-ktx:${versions.libraries.navigation}"
+    implementation "androidx.navigation:navigation-ui-ktx:${versions.libraries.navigation}"
+
+    //Lifecycle
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:${versions.libraries.lifecycle}"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:${versions.libraries.lifecycle}"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:${versions.libraries.lifecycle}"
+
+    //Dagger
+    api "com.google.dagger:dagger-android:${versions.libraries.dagger}"
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+    kapt "com.google.dagger:dagger-compiler:${versions.libraries.dagger}"
+
+
+    //Image Processing Glide
+    implementation "com.github.bumptech.glide:glide:${versions.libraries.glide}"
+
+    //Retrofit
+    implementation "com.squareup.retrofit2:retrofit:${versions.libraries.retrofit}"
+    implementation "com.squareup.retrofit2:converter-moshi:${versions.libraries.moshi}"
+
+    //OKHttp
+    implementation "com.squareup.okhttp3:okhttp:${versions.libraries.okhttp}"
+    implementation "com.squareup.okhttp3:logging-interceptor:${versions.libraries.okHttpInterceptor}"
+
+    //Reactive
+    implementation "io.reactivex.rxjava2:rxkotlin:${versions.libraries.rxkotlin}"
+    implementation "io.reactivex.rxjava2:rxandroid:${versions.libraries.rxAndroid}"
+
+    //Room
+    implementation "androidx.room:room-runtime:${versions.libraries.room}"
+    kapt "androidx.room:room-compiler:${versions.libraries.room}"
+    implementation "androidx.room:room-rxjava2:${versions.libraries.room}"
+
+    testImplementation "junit:junit:${versions.libraries.junit}"
+    androidTestImplementation "androidx.test.ext:junit:${versions.libraries.extJunit}"
+    androidTestImplementation "androidx.test.espresso:espresso-core:${versions.libraries.espresso}"
+
+}
